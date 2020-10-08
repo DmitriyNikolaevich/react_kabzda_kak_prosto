@@ -12,6 +12,7 @@ const Dialogs = (props) => {
     let addPost = () => {
         let text = Refer.current.value;
         props.addMessage(text);
+        Refer.current.value = '';
     };
 
     let dialogItems = props.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));

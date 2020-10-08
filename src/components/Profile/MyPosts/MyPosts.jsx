@@ -2,14 +2,16 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-let Refer = React.createRef();
-
-let addPost = () => {
-    let text = Refer.current.value;
-    alert(text);
-}
 
 const MyPosts = (props) => {
+
+    let Refer = React.createRef();
+
+    let addPost = () => {
+        let text = Refer.current.value;
+        props.addPost(text);
+        Refer.current.value = '';
+    };
 
     let postsItems = props.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
 
