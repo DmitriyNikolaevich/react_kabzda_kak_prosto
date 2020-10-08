@@ -9,10 +9,15 @@ const Dialogs = (props) => {
 
     let Refer = React.createRef();
 
-    let addPost = () => {
+    let addMessage = () => {
         let text = Refer.current.value;
         props.addMessage(text);
         Refer.current.value = '';
+    };
+
+    let writeNewMessage = () => {
+        let text = Refer.current.value;
+        props.writeMessage(text);
     };
 
     let dialogItems = props.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
@@ -28,10 +33,10 @@ const Dialogs = (props) => {
                 {messageItem}
                 <div>
                 <div>
-                    <textarea ref={ Refer }></textarea>
+                    <textarea ref={ Refer } onChange={ writeNewMessage } value={props.newMessageText} />
                 </div>
                 <div>
-                    <button onClick={ addPost }>Add Post</button>
+                    <button onClick={ addMessage }>Add Post</button>
                 </div>
             </div>
             </div>
