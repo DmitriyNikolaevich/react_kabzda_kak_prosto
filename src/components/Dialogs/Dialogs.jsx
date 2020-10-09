@@ -20,9 +20,9 @@ const Dialogs = (props) => {
         props.writeMessage(text);
     };
 
-    let dialogItems = props.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
+    let dialogItems = props.state.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
 
-    let messageItem = props.messages.map( el => ( <Message message={el.message} /> ) );
+    let messageItem = props.state.messages.map( el => ( <Message message={el.message} /> ) );
 
     return (
         <div className={s.dialogs}>
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
                 {messageItem}
                 <div>
                 <div>
-                    <textarea ref={ Refer } onChange={ writeNewMessage } value={props.newMessageText} />
+                    <textarea ref={ Refer } onChange={ writeNewMessage } value={props.state.newMessageText} />
                 </div>
                 <div>
                     <button onClick={ addMessage }>Add Post</button>
