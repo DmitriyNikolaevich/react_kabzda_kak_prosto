@@ -17,8 +17,8 @@ const App = (props) => {
       <Header />
       <Nav />
       <div className='content'>
-        <Route render={ () => <Profile posts={props.state.posts} addPost={props.addPost} newPostText={props.state.newPostText} writeWords={props.writeWords} />} path='/profile' />
-        <Route render={ () => <Dialogs dialogs={props.state.dialogs} messages={props.state.messages} addMessage={props.addMessage} newMessageText={props.state.newMessageText} writeMessage={props.writeMessage} />} path='/dialogs' />
+        <Route render={ () => <Profile posts={props.store.state.posts} addPost={props.store.addPost} newPostText={props.store.state.newPostText} writeWords={props.store.writeWords} />} path='/profile' />
+        <Route render={ () => <Dialogs dialogs={props.store.state.dialogs} messages={props.store.state.messages} addMessage={props.store.addMessage} newMessageText={props.store.state.newMessageText} writeMessage={props.store.writeMessage} />} path='/dialogs' />
         <Route component={News} path='/news' />
         <Route component={Music} path='/music' />
         <Route component={Settings} path='/settings' />

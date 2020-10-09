@@ -1,4 +1,4 @@
-import state, { addMessage, addPost, stateCallback, writeMessage, writeWords } from './redux/state';
+import store from './redux/state';
 import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -6,17 +6,17 @@ import App from './App';
 import './index.css';
 
 
-let rerender = (state, addMessage, addPost, writeWords, writeMessage) => {
+let rerender = (store) => {
     ReactDOM.render(
       <React.StrictMode>
-        <App state={state} addMessage={addMessage} addPost={addPost} writeWords={writeWords} writeMessage={writeMessage}/>
+        <App store={store} />
       </React.StrictMode>,
       document.getElementById('root')
     );
   };
 
-rerender(state, addMessage, addPost, writeWords, writeMessage);
+rerender(store);
 
-stateCallback(rerender);
+store.stateCallback(rerender);
 
 serviceWorker.unregister();
