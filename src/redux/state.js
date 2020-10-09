@@ -1,4 +1,4 @@
-import rerender from './../render';
+let rerender;
 
 let state = {
     posts: [
@@ -53,8 +53,12 @@ export let addPost = () => {
   state.posts.push(newPost);
   state.newPostText = '';
   rerender(state, addMessage, addPost, writeWords, writeMessage);
-}
+};
 
+
+export let stateCallback = (observer) => {
+  rerender = observer;
+};
 
 
 export default state;
