@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/state';
 import Dialog from './Dialog/Dialog';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
@@ -10,12 +11,12 @@ const Dialogs = (props) => {
     let Refer = React.createRef();
 
     let addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'});
+        props.dispatch(addMessageActionCreator());
     };
 
     let writeNewMessage = () => {
         let text = Refer.current.value;
-        props.dispatch({type: 'WRITE-MESSAGE', newLetter: text});
+        props.dispatch(writeMessageActionCreator(text));
     };
 
     let dialogItems = props.state.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));

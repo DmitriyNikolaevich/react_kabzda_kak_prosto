@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, writeWordsActionCreator } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -8,12 +9,12 @@ const MyPosts = (props) => {
     let Refer = React.createRef();
 
     let addPost = () => {
-        props.dispatch({type: 'ADD-POST'});
+        props.dispatch(addPostActionCreator());
     };
 
     let onPostChange = () => {
         let newText = Refer.current.value;
-        props.dispatch({type: 'WRITE-WORDS', newLetter: newText});
+        props.dispatch(writeWordsActionCreator(newText));
     };
 
     let postsItems = props.state.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
