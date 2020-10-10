@@ -8,14 +8,12 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-    let Refer = React.createRef();
-
     let addMessage = () => {
         props.dispatch(addMessageActionCreator());
     };
 
-    let writeNewMessage = () => {
-        let text = Refer.current.value;
+    let writeNewMessage = (e) => {
+        let text = e.target.value;
         props.dispatch(writeMessageActionCreator(text));
     };
 
@@ -32,7 +30,7 @@ const Dialogs = (props) => {
                 {messageItem}
                 <div>
                 <div>
-                    <textarea ref={ Refer } onChange={ writeNewMessage } value={props.state.newMessageText} />
+                    <textarea onChange={ writeNewMessage } value={props.state.newMessageText} />
                 </div>
                 <div>
                     <button onClick={ addMessage }>Add Post</button>
