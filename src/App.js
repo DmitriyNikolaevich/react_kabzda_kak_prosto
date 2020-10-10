@@ -18,8 +18,8 @@ const App = (props) => {
       <Header />
       <Nav />
       <div className='content'>
-        <Route render={ () => <Profile state={props.store.getState()} addPost={props.store.addPost.bind(store)} writeWords={props.store.writeWords.bind(store)} />} path='/profile' />
-        <Route render={ () => <Dialogs state={props.store.getState()} addMessage={props.store.addMessage.bind(store)} writeMessage={props.store.writeMessage.bind(store)} />} path='/dialogs' />
+        <Route render={ () => <Profile state={props.state} dispatch={props.dispatch} />} path='/profile' />
+        <Route render={ () => <Dialogs state={props.state} dispatch={props.dispatch} />} path='/dialogs' />
         <Route component={News} path='/news' />
         <Route component={Music} path='/music' />
         <Route component={Settings} path='/settings' />

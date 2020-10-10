@@ -8,15 +8,15 @@ const MyPosts = (props) => {
     let Refer = React.createRef();
 
     let addPost = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'});
     };
 
     let onPostChange = () => {
         let newText = Refer.current.value;
-        props.writeWords(newText);
+        props.dispatch({type: 'WRITE-WORDS', newLetter: newText});
     };
 
-    let postsItems = props.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
+    let postsItems = props.state.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
 
     return (
         <div>
@@ -25,7 +25,7 @@ const MyPosts = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={ Refer } onChange={ onPostChange } value={props.newPostText} />
+                    <textarea ref={ Refer } onChange={ onPostChange } value={props.state.newPostText} />
                 </div>
                 
                 <div>

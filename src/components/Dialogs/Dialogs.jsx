@@ -10,14 +10,12 @@ const Dialogs = (props) => {
     let Refer = React.createRef();
 
     let addMessage = () => {
-        let text = Refer.current.value;
-        props.addMessage(text);
-        Refer.current.value = '';
+        props.dispatch({type: 'ADD-MESSAGE'});
     };
 
     let writeNewMessage = () => {
         let text = Refer.current.value;
-        props.writeMessage(text);
+        props.dispatch({type: 'WRITE-MESSAGE', newLetter: text});
     };
 
     let dialogItems = props.state.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
