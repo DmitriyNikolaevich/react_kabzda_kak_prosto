@@ -1,21 +1,8 @@
 import React from 'react';
-import { addPostActionCreator, writeWordsActionCreator } from '../../../redux/profilePageReducer';
 import s from './MyPosts.module.css';
-import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
-
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
-    };
-
-    let onPostChange = (e) => {
-        let newText = e.target.value;
-        props.dispatch(writeWordsActionCreator(newText));
-    };
-
-    let postsItems = props.state.profilePage.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
 
     return (
         <div>
@@ -24,15 +11,15 @@ const MyPosts = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea onChange={ onPostChange } value={props.state.profilePage.newPostText} />
+                    <textarea onChange={ props.onPostChange } value={props.value} />
                 </div>
                 
                 <div>
-                    <button onClick={ addPost }>Add Post</button>
+                    <button onClick={ props.addPost }>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>
-                {postsItems}
+                {props.postsItems}
             </div>
         </div>
     )

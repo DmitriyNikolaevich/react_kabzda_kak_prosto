@@ -1,39 +1,21 @@
 import React from 'react';
-import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/dialogPageReducer';
-import Dialog from './Dialog/Dialog';
 import s from './Dialogs.module.css';
-import Message from './Message/Message';
-
-
 
 const Dialogs = (props) => {
-
-    let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
-    };
-
-    let writeNewMessage = (e) => {
-        let text = e.target.value;
-        props.dispatch(writeMessageActionCreator(text));
-    };
-
-    let dialogItems = props.state.dialogPage.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
-
-    let messageItem = props.state.dialogPage.messages.map( el => ( <Message message={el.message} /> ) );
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
-                {dialogItems}
+                {props.dialogItems}
             </div>
             <div className={s.messages}>
-                {messageItem}
+                {props.messageItem}
                 <div>
                 <div>
-                    <textarea onChange={ writeNewMessage } value={props.state.dialogPage.newMessageText} />
+                    <textarea onChange={ props.writeNewMessage } value={props.value} />
                 </div>
                 <div>
-                    <button onClick={ addMessage }>Add Post</button>
+                    <button onClick={ props.addMessage }>Add Post</button>
                 </div>
             </div>
             </div>

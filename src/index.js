@@ -6,20 +6,17 @@ import App from './App';
 import './index.css';
 
 
-let rerender = (state) => {
+let rerender = (store) => {
     ReactDOM.render(
       <React.StrictMode>
-        <App state={state} dispatch={store.dispatch.bind(store)} />
+        <App store={store} />
       </React.StrictMode>,
       document.getElementById('root')
     );
   };
 
-rerender(store.getState());
+rerender(store);
 
-store.subscribe( () => {
-  let state = store.getState();
-  rerender(state);
-});
+store.subscribe( () => rerender(store));
 
 serviceWorker.unregister();
