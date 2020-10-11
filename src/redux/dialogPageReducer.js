@@ -1,7 +1,24 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const WRITE_MESSAGE = 'WRITE-MESSAGE';
 
-const dialogPageReducer = (state, action) => {
+let initialState = {
+    dialogs: [
+      { id: 1, name: "Dima" },
+      { id: 2, name: "Jora" },
+      { id: 3, name: "Sveta" },
+      { id: 4, name: "Sasha" }
+    ],
+    messages: [
+      { id: 1, message: "Hi!" },
+      { id: 2, message: "How do you do?" },
+      { id: 3, message: "Yo" },
+      { id: 4, message: "Yo" },
+      { id: 5, message: "Yo" }
+    ],
+    newMessageText: "Mes"
+  };
+
+const dialogPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case WRITE_MESSAGE:
             state.newMessageText = action.newLetter;
