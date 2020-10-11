@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/state';
+import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/dialogPageReducer';
 import Dialog from './Dialog/Dialog';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
@@ -17,9 +17,9 @@ const Dialogs = (props) => {
         props.dispatch(writeMessageActionCreator(text));
     };
 
-    let dialogItems = props.state.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
+    let dialogItems = props.state.dialogPage.dialogs.map( el => ( <Dialog name={el.name} id={el.id} /> ));
 
-    let messageItem = props.state.messages.map( el => ( <Message message={el.message} /> ) );
+    let messageItem = props.state.dialogPage.messages.map( el => ( <Message message={el.message} /> ) );
 
     return (
         <div className={s.dialogs}>
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
                 {messageItem}
                 <div>
                 <div>
-                    <textarea onChange={ writeNewMessage } value={props.state.newMessageText} />
+                    <textarea onChange={ writeNewMessage } value={props.state.dialogPage.newMessageText} />
                 </div>
                 <div>
                     <button onClick={ addMessage }>Add Post</button>

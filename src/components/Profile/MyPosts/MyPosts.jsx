@@ -1,23 +1,21 @@
 import React from 'react';
-import { addPostActionCreator, writeWordsActionCreator } from '../../../redux/state';
+import { addPostActionCreator, writeWordsActionCreator } from '../../../redux/profilePageReducer';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
 
-    let Refer = React.createRef();
-
     let addPost = () => {
         props.dispatch(addPostActionCreator());
     };
 
-    let onPostChange = () => {
-        let newText = Refer.current.value;
+    let onPostChange = (e) => {
+        let newText = e.target.value;
         props.dispatch(writeWordsActionCreator(newText));
     };
 
-    let postsItems = props.state.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
+    let postsItems = props.state.profilePage.posts.map( el => (<Post src={el.src} text={el.text} likes={el.likes} />));
 
     return (
         <div>
@@ -26,7 +24,7 @@ const MyPosts = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={ Refer } onChange={ onPostChange } value={props.state.newPostText} />
+                    <textarea onChange={ onPostChange } value={props.state.profilePage.newPostText} />
                 </div>
                 
                 <div>
