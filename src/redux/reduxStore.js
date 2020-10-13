@@ -1,7 +1,8 @@
+import { combineReducers, createStore } from "redux";
 import dialogPageReducer from "./dialogPageReducer";
 import profilePageReducer from "./profilePageReducer";
 
-const { createStore, combineReducers } = require("redux");
+
 
 let reducers = combineReducers({
     dialogPage: dialogPageReducer,
