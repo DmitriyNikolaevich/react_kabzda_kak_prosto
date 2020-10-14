@@ -10,8 +10,8 @@ import Message from './Message/Message'
 
 const mapStateToProps = (state) => {
     return {
-        dialogItems: state.dialogPage.dialogs.map( el => <Dialog id={el.id} name={el.name} />),
-        messageItems: state.dialogPage.messages.map( el => <Message message={el.message} />),
+        dialogItems: state.dialogPage.dialogs.map( el => <Dialog id={el.id} key={el.id} name={el.name} />),
+        messageItems: state.dialogPage.messages.map( el => <Message message={el.message} key={el.id} />),
         value: state.dialogPage.newMessageText
     }
 };

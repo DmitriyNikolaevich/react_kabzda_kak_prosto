@@ -8,7 +8,7 @@ import Post from './Post/Post';
 
 let mapStateToProps = (state) => {
     return {
-        postsItems: state.profilePage.posts.map( el => <Post src={el.src} text={el.text} likes={el.likes} />),
+        postsItems: state.profilePage.posts.map( el => <Post src={el.src} text={el.text} key={el.id} likes={el.likes} />),
         value: state.profilePage.newPostText
     }
 };
