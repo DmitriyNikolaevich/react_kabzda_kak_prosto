@@ -4,9 +4,7 @@ import s from './Users.module.css';
 
 class User extends React.Component {
 
-        constructor(props) {
-            super(props);
-
+        componentDidMount() {
             if (this.props.users.length === 0) {
                 Axios.get("https://social-network.samuraijs.com/api/1.0/users").then(recive => {
                     this.props.setUsers(recive.data.items);
