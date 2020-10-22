@@ -16,7 +16,7 @@ let User = (props) => {
     return <div>
         <div>
             {pages.map(el => {
-                return <button onClick={(e) => { props.onPageChenged(el) }} className={props.currentPage === el && s.selectegPage}>{el}</button>
+                return <button onClick={(e) => { props.onPageChenged(el) }} className={props.currentPage === el ? s.selectegPage : null}>{el}</button>
             })}
         </div>
         {props.users.map(u => <div id={u.id}>
