@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Axios from 'axios';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalCountAC, setFetchingAC } from '../../redux/usersPageReducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTotalCount, setFetching } from '../../redux/usersPageReducer';
 import Users from './Users';
 import loader from '../../assets/images/loader3.svg';
 import Preloader from '../common/preloader/Preloader';
@@ -59,28 +59,27 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (usersID) => {
-            dispatch(followAC(usersID))
-        },
-        unfollow: (usersID) => {
-            dispatch(unfollowAC(usersID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        setFetching: (isFetching) => {
-            dispatch(setFetchingAC(isFetching))
-        }
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (usersID) => {
+//             dispatch(followAC(usersID))
+//         },
+//         unfollow: (usersID) => {
+//             dispatch(unfollowAC(usersID))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (currentPage) => {
+//             dispatch(setCurrentPageAC(currentPage))
+//         },
+//         setTotalCount: (totalCount) => {
+//             dispatch(setTotalCountAC(totalCount))
+//         },
+//         setFetching: (isFetching) => {
+//             dispatch(setFetchingAC(isFetching))
+//         }
+//     }
+// };
 
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalCount, setFetching })(UsersAPIComponent);
