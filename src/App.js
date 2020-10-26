@@ -17,7 +17,7 @@ const App = (props) => {
       <Header />
       <Nav />
       <div className='content'>
-        <Route render={ () => <ProfileContainer />} path='/profile' />
+        <Route render={ () => <ProfileContainer />} path='/profile/:userID?' />
         <Route render={ () => <DialogsContainer />} path='/dialogs' />
         <Route render={ () => <UsersContainer />} path='/users' />
         <Route component={News} path='/news' />
