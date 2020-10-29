@@ -20,7 +20,7 @@ let usersPageReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.usersID) {
-                        return { ...u, friend: true }
+                        return { ...u, followed: true }
                     }
                     return u;
                 })
@@ -31,7 +31,7 @@ let usersPageReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.usersID) {
-                        return { ...u, friend: false }
+                        return { ...u, followed: false }
                     }
                     return u;
                 })
