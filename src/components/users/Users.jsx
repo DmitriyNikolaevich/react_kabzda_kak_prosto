@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Users.module.css';
 import { NavLink } from 'react-router-dom';
-import * as Axios from 'axios';
 import { followAPI } from '../../API';
 
 let User = (props) => {
@@ -32,18 +31,28 @@ let User = (props) => {
                 </div>
                 <div>
                     {u.followed
-                        ? <button onClick={() => {
+                        ? <button disabled={props.progress} onClick={() => {
+                            // debugger;
+                            props.inProgress(true);
+                            // debugger;
                             followAPI.unfollow(u.id).then(recive => {
                                 if (recive.data.resultCode === 0) {
                                     props.unfollow(u.id)
                                 }
+                                props.inProgress(false);
+                                // debugger;
                             });
                         }} >Unfollow</button>
-                        : <button onClick={() => {
+                        : <button disabled={props.progress} onClick={() => {
+                            // debugger;
+                            props.inProgress(true);
+                            // debugger;
                             followAPI.follow(u.id).then(recive => {
                                 if (recive.data.resultCode === 0) {
                                     props.follow(u.id)
                                 }
+                                props.inProgress(false);
+                                // debugger;
                             });
                         }} >Follow</button>
                     }
