@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/dialogPageReducer';
 import Dialog from './Dialog/Dialog';
 import Dialogs from './Dialogs';
@@ -12,22 +14,9 @@ const mapStateToProps = (state) => {
     return {
         dialogItems: state.dialogPage.dialogs.map( el => <Dialog id={el.id} key={el.id} name={el.name} />),
         messageItems: state.dialogPage.messages.map( el => <Message message={el.message} key={el.id} />),
-        value: state.dialogPage.newMessageText
+        value: state.dialogPage.newMessageText,
+        isAuth: state.auth.isAuth
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: () => {
-            dispatch(addMessageActionCreator());
-        },
-        writeNewMessage: (e) => {
-            let text = e.target.value;
-            dispatch(writeMessageActionCreator(text));
-        }
-    }
-};
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose( connect(mapStateToProps, {addMessageActionCreator}), withAuthRedirect )(Dialogs);

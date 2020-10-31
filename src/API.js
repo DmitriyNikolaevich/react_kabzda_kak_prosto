@@ -7,13 +7,16 @@ export const instance = Axios.create({
     headers: {
         "API-KEY": "f747db5e-dcb5-4b79-a43c-812e564ac23b"
     }
-})
+});
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
             })
+    },
+    getUser(userId) {
+        return instance.get(`profile/${userId}`);
     }
 }
 
@@ -23,5 +26,11 @@ export const followAPI = {
     },
     unfollow(userID) {
         return instance.delete(`follow/${userID}`);
+    }
+}
+
+export const authAPI = {
+    getAuth() {
+        return instance.get(`auth/me`);
     }
 }

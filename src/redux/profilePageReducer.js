@@ -1,3 +1,5 @@
+import { usersAPI } from "../API";
+
 const WRITE_WORDS = 'WRITE-WORDS';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -54,6 +56,15 @@ export const addPostActionCreator = () => ({
 });
 export const setUserProfile = (userProfile) => ({
  type: SET_USER_PROFILE, userProfile 
-})
+});
+
+
+export const getUserThunk = (user) => {
+  return (dispatch) => {
+    usersAPI.getUser(user).then(response => {
+      dispatch(setUserProfile(response.data));
+    });
+  }
+}
 
 export default profilePageReducer;
