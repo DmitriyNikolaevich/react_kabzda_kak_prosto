@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import s from './Dialogs.module.css';
 
 const Dialogs = (props) => {

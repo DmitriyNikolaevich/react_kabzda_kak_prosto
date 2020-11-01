@@ -8,7 +8,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 const Profile = (props) => {
     return (
         <div className={s.content}>
-            <ProfileInfo user={props.user} />
+            <ProfileInfo user={props.user} status={props.status} updateStatus={props.updateStatus} />
             <MyPostsContainer store={props.store} />
         </div>
     )

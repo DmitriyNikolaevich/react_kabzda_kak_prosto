@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import { addMessageActionCreator, writeMessageActionCreator } from '../../redux/dialogPageReducer';
+import { addMessageActionCreator } from '../../redux/dialogPageReducer';
 import Dialog from './Dialog/Dialog';
 import Dialogs from './Dialogs';
 import Message from './Message/Message'
