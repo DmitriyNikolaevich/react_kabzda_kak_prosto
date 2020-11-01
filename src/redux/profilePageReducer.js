@@ -91,6 +91,8 @@ export const updateUserStatusThunk = (userStatus) => {
     profileAPI.updateStatus(userStatus).then( response => {
       if (response.data.resultCode === 0) {
       dispatch(setUserStatus(userStatus));
+      } else {
+        alert("HuYo")
       }
     })
   }
