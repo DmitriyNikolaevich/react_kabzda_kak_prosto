@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const WRITE_MESSAGE = 'WRITE-MESSAGE';
+// const WRITE_MESSAGE = 'WRITE-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -22,18 +22,18 @@ const dialogPageReducer = (state = initialState, action) => {
          
     switch (action.type) {
 
-        case WRITE_MESSAGE:
-            return {
-              ...state,
-              newMessageText: action.newLetter
-            };
+        // case WRITE_MESSAGE:
+        //     return {
+        //       ...state,
+        //       newMessageText: action.newLetter
+        //     };
 
 
         case ADD_MESSAGE:
             
             let newMessage = {
               id: 6,
-              message: state.newMessageText,
+              message: action.message
             };
             return {
               ...state,
@@ -46,8 +46,8 @@ const dialogPageReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE });
-export const writeMessageActionCreator = (text) =>
-  ({ type: WRITE_MESSAGE, newLetter: text });
+export const addMessageActionCreator = (message) => ({ type: ADD_MESSAGE, message: message });
+//export const writeMessageActionCreator = (text) =>
+//  ({ type: WRITE_MESSAGE, newLetter: text });
 
 export default dialogPageReducer;

@@ -1,7 +1,15 @@
 import React from 'react';
 import s from './Dialogs.module.css';
+import MessageReduxForm from './MessageForm/MessageForm';
 
 const Dialogs = (props) => {
+
+    const onSubmit = (submitData) => {
+        //props.addMessage();
+        console.log(submitData.message);
+        props.addMessageActionCreator(submitData.message);
+        
+    }
     
     return (
         <div className={s.dialogs}>
@@ -10,14 +18,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {props.messageItems}
-                <div>
-                <div>
-                    <textarea onChange={ props.writeNewMessage } value={props.value} />
-                </div>
-                <div>
-                    <button onClick={ props.addMessage }>Add Post</button>
-                </div>
-            </div>
+                <MessageReduxForm onSubmit={onSubmit}/>
             </div>
         </div>
     )
