@@ -5,7 +5,7 @@ const PostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={"textarea"} name={"post"} value={props.value} />
+                <Field component={"textarea"} name={"post"} />
             </div>
 
             <div>
