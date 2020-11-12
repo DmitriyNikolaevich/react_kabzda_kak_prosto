@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { authAPI } from "../API";
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -14,8 +15,7 @@ let authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
             }
 
         default:
@@ -48,6 +48,8 @@ export const login = (email, password, rememberMe) => {
                         dispatch(authThunk());    //response.data.data.id, response.data.data.email, response.data.data.login
                     } else {
                         alert(response.data.messages[0])
+                        let message = response.data.messages.lenght > 0 ? response.data.messages : "Some error";
+                        dispatch(stopSubmit("login", {_error: message}))
                     }
         });
     }
