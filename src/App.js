@@ -10,25 +10,42 @@ import UsersContainer from './components/users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
+import { initializeThunk } from './redux/appReducer';
+import { connect } from 'react-redux';
+import Preloader from './components/common/preloader/Preloader';
 
 
-const App = (props) => {
-  return (
-    <div className='app-wraper'>
-      <HeaderContainer />
-      <Nav />
-      <div className='content'>
-        <Route render={ () => <ProfileContainer />} path='/profile/:userID?' />
-        <Route render={ () => <DialogsContainer />} path='/dialogs' />
-        <Route render={ () => <UsersContainer />} path='/users' />
-        <Route component={News} path='/news' />
-        <Route component={Music} path='/music' />
-        <Route component={Settings} path='/settings' />
-        <Route component={Login} path='/login' />
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.initializeThunk();
+  }
+
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+    return (
+      <div className='app-wraper'>
+        <HeaderContainer />
+        <Nav />
+        <div className='content'>
+          <Route render={() => <ProfileContainer />} path='/profile/:userID?' />
+          <Route render={() => <DialogsContainer />} path='/dialogs' />
+          <Route render={() => <UsersContainer />} path='/users' />
+          <Route component={News} path='/news' />
+          <Route component={Music} path='/music' />
+          <Route component={Settings} path='/settings' />
+          <Route component={Login} path='/login' />
+        </div>
       </div>
-    </div>
-  );
-};
+    )
+  }
+}
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+
+export default connect(mapStateToProps, {initializeThunk})(App);
 

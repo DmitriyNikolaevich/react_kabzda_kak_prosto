@@ -24,45 +24,45 @@ let authReducer = (state = initialState, action) => {
 }
 
 export const setAuthData = (userId, email, login, isAuth) => ({
-    type: SET_USER_DATA, data: {userId, email, login, isAuth}
+    type: SET_USER_DATA, data: { userId, email, login, isAuth }
 });
 
 
 export const authThunk = () => {
     return (dispatch) => {
-        authAPI.getAuth()
-                .then( response => {
-                    if (response.data.resultCode === 0) {
-                        dispatch(setAuthData(response.data.data.id, response.data.data.email, response.data.data.login, true));
+        return authAPI.getAuth()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthData(response.data.data.id, response.data.data.email, response.data.data.login, true));
                 }
-        });
+            });
     }
 }
 
 export const login = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
-                .then( response => {
-                   
-                    if (response.data.resultCode === 0) {
-                        dispatch(authThunk());    //response.data.data.id, response.data.data.email, response.data.data.login
-                    } else {
-                        alert(response.data.messages[0])
-                        let message = response.data.messages.lenght > 0 ? response.data.messages : "Some error";
-                        dispatch(stopSubmit("login", {_error: message}))
-                    }
-        });
+            .then(response => {
+
+                if (response.data.resultCode === 0) {
+                    dispatch(authThunk());    //response.data.data.id, response.data.data.email, response.data.data.login
+                } else {
+                    alert(response.data.messages[0])
+                    let message = response.data.messages.lenght > 0 ? response.data.messages : "Some error";
+                    dispatch(stopSubmit("login", { _error: message }))
+                }
+            });
     }
 }
 
 export const logout = () => {
     return (dispatch) => {
         authAPI.logout()
-                .then( response => {
-                    if (response.data.resultCode === 0) {
-                        dispatch(setAuthData(null, null, null, false));
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthData(null, null, null, false));
                 }
-        });
+            });
     }
 }
 
