@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setCurrentPage, inProgress, getUsers, onPageChenger, unfollowThunk, followThunk } from '../../redux/usersPageReducer';
 import Users from './Users';
 import Preloader from '../common/preloader/Preloader';
+import { getProgress, getUsersSelector, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching } from '../../redux/usersSelectors';
 
 
 
@@ -37,14 +38,25 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         progress: state.usersPage.progress
+//     }
+// };
+
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        progress: state.usersPage.progress
+        users: getUsersSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        progress: getProgress(state)
     }
 };
 
