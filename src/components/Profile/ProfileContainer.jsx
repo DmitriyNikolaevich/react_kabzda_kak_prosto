@@ -12,7 +12,6 @@ import { compose } from 'redux';
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        debugger
         let user = this.props.match.params.userID ? this.props.match.params.userID : this.props.auth;
         this.props.getUserThunk(user);
         this.props.getUserStatusThunk(user);

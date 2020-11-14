@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import s from './MyPosts.module.css';
 import PostReduxForm from './PostForm/PostForm';
 
 
-const MyPosts = (props) => {
+class MyPosts extends PureComponent {
 
-    const onSubmit = (postData) => {
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return nextProps !== this.props || nextState !== this.state;
+    // };
+
+    onSubmit = (postData) => {
         console.log(postData.post);
-        props.addPostActionCreator(postData.post);
+        this.props.addPostActionCreator(postData.post);
     }
 
-    return (
-        <div>
+    render() {
+        console.log("Render");
+        return (
             <div>
-                <h3>My Posts</h3>
+                <div>
+                    <h3>My Posts</h3>
+                </div>
+                <PostReduxForm onSubmit={this.onSubmit} />
+                <div className={s.posts}>
+                    {this.props.postsItems}
+                </div>
             </div>
-            <PostReduxForm onSubmit={onSubmit}/>
-            <div className={s.posts}>
-                {props.postsItems}
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default MyPosts;
