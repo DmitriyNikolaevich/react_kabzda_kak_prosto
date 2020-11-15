@@ -25,12 +25,9 @@ export const initializingSucces = () => ({
 
 
 export const initializeThunk = () => {
-    return (dispatch) => {
-        let promise = dispatch(authThunk());
-        promise.then(() => {
-            dispatch(initializingSucces());
-            }
-        );
+    return async (dispatch) => {
+        await dispatch(authThunk());
+        dispatch(initializingSucces());
     }
 };
 

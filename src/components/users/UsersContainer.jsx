@@ -38,17 +38,6 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         progress: state.usersPage.progress
-//     }
-// };
-
 let mapStateToProps = (state) => {
     return {
         users: getUsersSelector(state),
@@ -59,28 +48,5 @@ let mapStateToProps = (state) => {
         progress: getProgress(state)
     }
 };
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (usersID) => {
-//             dispatch(followAC(usersID))
-//         },
-//         unfollow: (usersID) => {
-//             dispatch(unfollowAC(usersID))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (currentPage) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalCount: (totalCount) => {
-//             dispatch(setTotalCountAC(totalCount))
-//         },
-//         setFetching: (isFetching) => {
-//             dispatch(setFetchingAC(isFetching))
-//         }
-//     }
-// };
 
 export default connect(mapStateToProps, { setCurrentPage, inProgress, getUsers, onPageChenger, unfollowThunk, followThunk })(UsersAPIComponent);

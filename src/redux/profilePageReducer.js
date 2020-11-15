@@ -53,7 +53,7 @@ const profilePageReducer = (state = initialState, action) => {
         case DELETE_POST:
           return {
             ...state,
-            posts: state.posts.filter( p => p.id != action.postID)
+            posts: state.posts.filter( p => p.id !== action.postID)
           }
 
         default:
@@ -79,30 +79,27 @@ export const deletePost = (postID) => ({
 
 
 export const getUserThunk = (user) => {
-  return (dispatch) => {
-    profileAPI.getUser(user).then(response => {
-      dispatch(setUserProfile(response.data));
-    });
+  return async (dispatch) => {
+    let response = await profileAPI.getUser(user);
+    dispatch(setUserProfile(response.data));
   }
 };
 
 export const getUserStatusThunk = (userID) => {
-  return (dispatch) => {
-    profileAPI.getStatus(userID).then(response => {
-      dispatch(setUserStatus(response.data))
-    })
+  return async (dispatch) => {
+    let response = await profileAPI.getStatus(userID);
+    dispatch(setUserStatus(response.data))
   }
 };
 
 export const updateUserStatusThunk = (userStatus) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(userStatus).then( response => {
+  return async (dispatch) => {
+    let response = await profileAPI.updateStatus(userStatus);
       if (response.data.resultCode === 0) {
       dispatch(setUserStatus(userStatus));
       } else {
         alert("HuYo")
-      }
-    })
+      };
   }
 };
 

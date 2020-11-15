@@ -1,4 +1,5 @@
 import { followAPI, usersAPI } from "../API";
+//import { updateObjectInArray } from "../utils/objectHelper";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -22,6 +23,7 @@ let usersPageReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
+                //users: updateObjectInArray(state.users, action.usersID, "id", {followed: true})
                 users: state.users.map(u => {
                     if (u.id === action.usersID) {
                         return { ...u, followed: true }
@@ -33,6 +35,7 @@ let usersPageReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
+                //users: updateObjectInArray(state.users, action.usersID, "id", {followed: false})
                 users: state.users.map(u => {
                     if (u.id === action.usersID) {
                         return { ...u, followed: false }
@@ -85,45 +88,44 @@ export const inProgress = (isFetching) => ({
 
 
 export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFetching(true));
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(setFetching(data.followed));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalCount(data.totalCount));
-        });
+        let data = await usersAPI.getUsers(currentPage, pageSize);
+        dispatch(setFetching(data.followed));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalCount(data.totalCount));
     };
 };
 export const onPageChenger = (pageNumber, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFetching(true));
         dispatch(setCurrentPage(pageNumber));
-        usersAPI.getUsers(pageNumber, pageSize).then(data => {
-            dispatch(setFetching(false));
-            dispatch(setUsers(data.items));
-        });
+        let data = await usersAPI.getUsers(pageNumber, pageSize);
+        dispatch(setFetching(false));
+        dispatch(setUsers(data.items));
     }
 };
+
+
+const followUnfollowFlow = async (dispatch, userID, apiMetod, actionCreator) => {
+    dispatch(inProgress(true));
+        let response = await apiMetod(userID);
+        if (response.data.resultCode === 0) {
+            dispatch(actionCreator(userID));
+        }
+        dispatch(inProgress(false));
+}
+
 export const unfollowThunk = (userID) => {
-    return (dispatch) => {
-        dispatch(inProgress(true));
-        followAPI.unfollow(userID).then(recive => {
-            if (recive.data.resultCode === 0) {
-                dispatch(unfollow(userID));
-            }
-            dispatch(inProgress(false));
-        });
+
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userID, followAPI.unfollow.bind(followAPI), unfollow);
     }
 };
 export const followThunk = (userID) => {
-    return (dispatch) => {
-        dispatch(inProgress(true));
-        followAPI.follow(userID).then(recive => {
-            if (recive.data.resultCode === 0) {
-                dispatch(follow(userID));
-            }
-            dispatch(inProgress(false));
-        });
+
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userID, followAPI.follow.bind(followAPI), follow);
     }
 }
 
