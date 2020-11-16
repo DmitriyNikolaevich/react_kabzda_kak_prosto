@@ -18,14 +18,8 @@ describe ("ProfileStatus component", () => {
         const component = create(<ProfileStatus status="IT-kamasutra.com" />);
         const root = component.root;
         expect(() => {
-        const input = root.findByType("input");
+        root.findByType("input");
         }).toThrow();
-    });
-    test("After creation span shuld be", () => {
-        const component = create(<ProfileStatus status="IT-kamasutra.com" />);
-        const root = component.root;
-        const span = root.findByType("span");
-        expect(span.innerText).toBe("IT-kamasutra.com");
     });
     test("After creation span shuld be", () => {
         const component = create(<ProfileStatus status="IT-kamasutra.com" />);
