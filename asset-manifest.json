@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react_kabzda_kak_prosto/static/css/main.6d5fd410.chunk.css",
+    "main.js": "/react_kabzda_kak_prosto/static/js/main.aac58202.chunk.js",
+    "main.js.map": "/react_kabzda_kak_prosto/static/js/main.aac58202.chunk.js.map",
+    "runtime-main.js": "/react_kabzda_kak_prosto/static/js/runtime-main.8e29897a.js",
+    "runtime-main.js.map": "/react_kabzda_kak_prosto/static/js/runtime-main.8e29897a.js.map",
+    "static/js/2.8bd4132a.chunk.js": "/react_kabzda_kak_prosto/static/js/2.8bd4132a.chunk.js",
+    "static/js/2.8bd4132a.chunk.js.map": "/react_kabzda_kak_prosto/static/js/2.8bd4132a.chunk.js.map",
+    "static/css/3.670192d0.chunk.css": "/react_kabzda_kak_prosto/static/css/3.670192d0.chunk.css",
+    "static/js/3.97aa30fd.chunk.js": "/react_kabzda_kak_prosto/static/js/3.97aa30fd.chunk.js",
+    "static/js/3.97aa30fd.chunk.js.map": "/react_kabzda_kak_prosto/static/js/3.97aa30fd.chunk.js.map",
+    "static/css/4.b145e0a5.chunk.css": "/react_kabzda_kak_prosto/static/css/4.b145e0a5.chunk.css",
+    "static/js/4.8c03c9c5.chunk.js": "/react_kabzda_kak_prosto/static/js/4.8c03c9c5.chunk.js",
+    "static/js/4.8c03c9c5.chunk.js.map": "/react_kabzda_kak_prosto/static/js/4.8c03c9c5.chunk.js.map",
+    "static/css/5.8a2dce88.chunk.css": "/react_kabzda_kak_prosto/static/css/5.8a2dce88.chunk.css",
+    "static/js/5.fbd606a7.chunk.js": "/react_kabzda_kak_prosto/static/js/5.fbd606a7.chunk.js",
+    "static/js/5.fbd606a7.chunk.js.map": "/react_kabzda_kak_prosto/static/js/5.fbd606a7.chunk.js.map",
+    "index.html": "/react_kabzda_kak_prosto/index.html",
+    "static/css/3.670192d0.chunk.css.map": "/react_kabzda_kak_prosto/static/css/3.670192d0.chunk.css.map",
+    "static/css/4.b145e0a5.chunk.css.map": "/react_kabzda_kak_prosto/static/css/4.b145e0a5.chunk.css.map",
+    "static/css/5.8a2dce88.chunk.css.map": "/react_kabzda_kak_prosto/static/css/5.8a2dce88.chunk.css.map",
+    "static/css/main.6d5fd410.chunk.css.map": "/react_kabzda_kak_prosto/static/css/main.6d5fd410.chunk.css.map",
+    "static/js/2.8bd4132a.chunk.js.LICENSE.txt": "/react_kabzda_kak_prosto/static/js/2.8bd4132a.chunk.js.LICENSE.txt",
+    "static/media/loader3.152d0405.svg": "/react_kabzda_kak_prosto/static/media/loader3.152d0405.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8e29897a.js",
+    "static/js/2.8bd4132a.chunk.js",
+    "static/css/main.6d5fd410.chunk.css",
+    "static/js/main.aac58202.chunk.js"
+  ]
+}
